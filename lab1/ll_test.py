@@ -5,10 +5,12 @@ import ctypes
 import os
 import unittest
 
+
 class LinkedList(ctypes.Structure):
     cwd = os.getcwd()
     lib_path = os.path.join(cwd, 'libll.so')
     lib = ctypes.CDLL(lib_path)
+
     def __init__(self, head=0):
         self.lib.linked_list_tostring.restype = ctypes.c_char_p
         self.lib.linked_list_init.restype = ctypes.POINTER(LinkedList)
@@ -123,7 +125,7 @@ class LinkedListTest(unittest.TestCase):
         for i in range(200):
             val = ll.get(i)
             if i < 100:
-                self.assertTrue(val == i)
+                self.assertEqual(val, i)
             else:
                 self.assertEqual(val, -0x80000000)
 
@@ -148,7 +150,6 @@ class LinkedListTest(unittest.TestCase):
         self.assertEqual(str(ret), '7->12')
         ret = ll.search_all(101)
         self.assertEqual(ret.size(), 0)
-
 
 
 if __name__ == "__main__":
