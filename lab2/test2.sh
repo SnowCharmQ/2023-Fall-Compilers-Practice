@@ -1,0 +1,1 @@
+python3 lexical_analyzer.py --code_path test2.spl --ans_path ans2.txt --test
