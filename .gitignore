@@ -186,3 +186,5 @@ yarn-error.log*
 
 .vscode
 *.yy.c
+*.tab.c
+*.tab.h
